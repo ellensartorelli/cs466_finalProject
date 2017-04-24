@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07801AEB1EAE7F87007FEB0B /* FutureLogTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07801AEA1EAE7F87007FEB0B /* FutureLogTableViewCell.swift */; };
+		07801AED1EAE8189007FEB0B /* FutureLogEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07801AEC1EAE8189007FEB0B /* FutureLogEvent.swift */; };
+		07801AEF1EAE855D007FEB0B /* FutureLogTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07801AEE1EAE855D007FEB0B /* FutureLogTableViewController.swift */; };
 		07A395B71EAE74ED003C6E64 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A395B61EAE74ED003C6E64 /* AppDelegate.swift */; };
-		07A395B91EAE74ED003C6E64 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A395B81EAE74ED003C6E64 /* ViewController.swift */; };
+		07A395B91EAE74ED003C6E64 /* FutureLogEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A395B81EAE74ED003C6E64 /* FutureLogEventViewController.swift */; };
 		07A395BC1EAE74ED003C6E64 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07A395BA1EAE74ED003C6E64 /* Main.storyboard */; };
 		07A395BF1EAE74ED003C6E64 /* presto_v0.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 07A395BD1EAE74ED003C6E64 /* presto_v0.xcdatamodeld */; };
 		07A395C11EAE74ED003C6E64 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07A395C01EAE74ED003C6E64 /* Assets.xcassets */; };
@@ -16,9 +19,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		07801AEA1EAE7F87007FEB0B /* FutureLogTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FutureLogTableViewCell.swift; sourceTree = "<group>"; };
+		07801AEC1EAE8189007FEB0B /* FutureLogEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FutureLogEvent.swift; sourceTree = "<group>"; };
+		07801AEE1EAE855D007FEB0B /* FutureLogTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FutureLogTableViewController.swift; sourceTree = "<group>"; };
 		07A395B31EAE74ED003C6E64 /* presto_v0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = presto_v0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07A395B61EAE74ED003C6E64 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		07A395B81EAE74ED003C6E64 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		07A395B81EAE74ED003C6E64 /* FutureLogEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureLogEventViewController.swift; sourceTree = "<group>"; };
 		07A395BB1EAE74ED003C6E64 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		07A395BE1EAE74ED003C6E64 /* presto_v0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = presto_v0.xcdatamodel; sourceTree = "<group>"; };
 		07A395C01EAE74ED003C6E64 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -57,8 +63,11 @@
 			isa = PBXGroup;
 			children = (
 				07A395B61EAE74ED003C6E64 /* AppDelegate.swift */,
-				07A395B81EAE74ED003C6E64 /* ViewController.swift */,
+				07A395B81EAE74ED003C6E64 /* FutureLogEventViewController.swift */,
 				07A395BA1EAE74ED003C6E64 /* Main.storyboard */,
+				07801AEA1EAE7F87007FEB0B /* FutureLogTableViewCell.swift */,
+				07801AEC1EAE8189007FEB0B /* FutureLogEvent.swift */,
+				07801AEE1EAE855D007FEB0B /* FutureLogTableViewController.swift */,
 				07A395C01EAE74ED003C6E64 /* Assets.xcassets */,
 				07A395C21EAE74ED003C6E64 /* LaunchScreen.storyboard */,
 				07A395C51EAE74ED003C6E64 /* Info.plist */,
@@ -139,9 +148,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07A395B91EAE74ED003C6E64 /* ViewController.swift in Sources */,
+				07801AED1EAE8189007FEB0B /* FutureLogEvent.swift in Sources */,
+				07801AEF1EAE855D007FEB0B /* FutureLogTableViewController.swift in Sources */,
+				07A395B91EAE74ED003C6E64 /* FutureLogEventViewController.swift in Sources */,
 				07A395B71EAE74ED003C6E64 /* AppDelegate.swift in Sources */,
 				07A395BF1EAE74ED003C6E64 /* presto_v0.xcdatamodeld in Sources */,
+				07801AEB1EAE7F87007FEB0B /* FutureLogTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,6 +315,7 @@
 				07A395CA1EAE74ED003C6E64 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
