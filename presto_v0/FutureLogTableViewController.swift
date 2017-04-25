@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import os.log
+
 
 class FutureLogTableViewController: UITableViewController {
     
@@ -35,6 +37,7 @@ class FutureLogTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.leftBarButtonItem = editButtonItem
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -86,27 +89,53 @@ class FutureLogTableViewController: UITableViewController {
 
         return cell
     }
+    
+    
+    //MARK: Actions
+    @IBAction func unwindToEventList(sender: UIStoryboardSegue){
+        
+        
+        if let sourceViewController = sender.source as?
+            FutureLogEventViewController, let event = sourceViewController.event{
+        
+            
+            if let selectedIndexPath = tableView.indexPathForSelectedRow{
+                events[selectedIndexPath.row] = event
+                tableView.reloadRows(at: [selectedIndexPath], with: .none)
+            }
+            else{
+                let newIndexPath = IndexPath(row: events.count, section: 0)
+                
+                events.append(event)
+                tableView.insertRows(at: [newIndexPath], with: .automatic)
+                
+            }
+        }
+    }
+    
+    
  
 
-    /*
+
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
-    */
 
-    /*
+
+
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
+            events.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
+ 
 
     /*
     // Override to support rearranging the table view.
@@ -123,14 +152,36 @@ class FutureLogTableViewController: UITableViewController {
     }
     */
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        super.prepare(for: segue, sender: sender)
+        switch(segue.identifier ?? ""){
+            case "AddItem":
+                os_log("Adding a new event", log: OSLog.default, type: .debug)
+            
+            case "ShowDetail":
+                guard let eventDetailViewController = segue.destination as? FutureLogEventViewController else {
+                    fatalError("Unexpected destination: \(segue.destination)")
+                }
+            
+                guard let selectedEventCell = sender as? FutureLogTableViewCell else {
+                    fatalError("Unexpected sender: \(sender)")
+                }
+            
+                guard let indexPath = tableView.indexPath(for: selectedEventCell) else {
+                    fatalError("The selected cell is not being displayed by the table")
+                }
+            
+                let selectedEvent = events[indexPath.row]
+                eventDetailViewController.event = selectedEvent
+            
+            default:
+                fatalError("Unexpected Segue Identifier; \(segue.identifier)")
+            
+        }
+        
     }
-    */
-
+   
 }

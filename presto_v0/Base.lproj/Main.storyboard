@@ -79,14 +79,26 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="New Event" id="hcn-Wu-LDO">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="6LL-He-q0Z"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="baj-0Y-P0X"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="6LL-He-q0Z">
+                            <connections>
+                                <action selector="cancel:" destination="BYZ-38-t0r" id="dft-di-6ZM"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="baj-0Y-P0X">
+                            <connections>
+                                <segue destination="mdM-j9-c3Y" kind="unwind" unwindAction="unwindToEventListWithSender:" id="e0U-RW-IDZ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="endDatePicker" destination="JVQ-WE-f3I" id="CTO-g8-EGC"/>
                         <outlet property="eventLabelTF" destination="fO8-ai-awL" id="ulC-G3-UKy"/>
+                        <outlet property="saveButton" destination="baj-0Y-P0X" id="EQm-kj-0eb"/>
+                        <outlet property="startDatePicker" destination="kZZ-ab-ago" id="VjJ-3U-qb3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <exit id="mdM-j9-c3Y" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2362.4000000000001" y="158.77061469265368"/>
         </scene>
@@ -103,7 +115,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="110"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mdc-p8-cih" id="aSI-Cj-oKP">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="109"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="110"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RyA-Mk-HVR">
@@ -125,6 +137,7 @@
                                 <connections>
                                     <outlet property="dayLabel" destination="RyA-Mk-HVR" id="PKB-8K-TCO"/>
                                     <outlet property="eventLabel" destination="dMj-iK-s59" id="uUd-ms-200"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="ShowDetail" id="04F-lm-W0z"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -179,7 +192,10 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1g4-xC-AM6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1423.2" y="158.77061469265368"/>
+            <point key="canvasLocation" x="1414" y="546"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="04F-lm-W0z"/>
+    </inferredMetricsTieBreakers>
 </document>
