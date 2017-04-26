@@ -1,27 +1,43 @@
 //
-//  DailyTaskTableViewController.swift
+//  DailyLogEventTableViewController.swift
 //  presto_v0
 //
-//  Created by Ellen Sartorelli on 4/25/17.
+//  Created by Ellen Sartorelli on 4/26/17.
 //  Copyright © 2017 Ellen Sartorelli. All rights reserved.
 //
 
 import UIKit
 
-class DailyTaskTableViewController: UITableViewController {
-    
-    
-    @IBOutlet weak var toggle: UISwitch!
-    @IBOutlet weak var timePicker: UIDatePicker!
-    var pickerVisible = false
-    
-    
+class DailyLogEventTableViewController: UITableViewController {
 
+
+    
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var timePicker: UIDatePicker!
+    @IBOutlet weak var dateDisplay: UILabel!
+
+    
+    var pickerVisible = false
+
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let calendar = Calendar.current
+        
+        let day = calendar.component(.day, from: Date.init())
+        let month = calendar.component(.month, from: Date.init())
+        let monthName = calendar.monthSymbols[month - 1]
+        
+        dateDisplay.text = "At: \(monthName) \(day)"
+        
+        timePicker.minimumDate = Date.init()
+
+        
         tableView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0)
         tableView.tableFooterView = UIView(frame: .zero)
+        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -35,34 +51,39 @@ class DailyTaskTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    
-    //MARK: Actions
+    //MARK: - Actions
     
     @IBAction func cancel(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func toggleValueChanged(_ sender: UISwitch) {
-        tableView.reloadData()
     }
     
     @IBAction func timeChanged(_ sender: UIDatePicker) {
         setTime()
     }
     
+    
+    
     //MARK:- Date and time
-
+    
     
     func setTime() {
         let calendar = Calendar.current
         
+//        let day = calendar.component(.day, from: Date.init())
+//        let month = calendar.component(.month, from: Date.init())
+//        let monthName = calendar.monthSymbols[month - 1]
+//        
+//        dateDisplay.text = "At: \(monthName) \(day)"
+
+  
         let hour = calendar.component(.hour, from: timePicker.date) % 12
         let minutes = calendar.component(.minute, from: timePicker.date)
-    
         
-        let time = "\(hour):" + String(format: "%02d", minutes)
+        
+        timeLabel.text = "\(hour):" + String(format: "%02d", minutes)
+        
+        
     }
-    
     
     // MARK: - Table view data source
     
@@ -79,20 +100,25 @@ class DailyTaskTableViewController: UITableViewController {
     
     @objc(tableView:heightForRowAtIndexPath:)
     override func tableView(_ tableView: UITableView,
-                   heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 2 && toggle.isOn == false {
-            return 0.0
+                            heightForRowAt indexPath: IndexPath) -> CGFloat {
+        print(pickerVisible)
+        if indexPath.row == 2 && pickerVisible == false {
+            return 165.0
         }
-        if indexPath.row == 2 {
-            if toggle.isOn == true {
-                return 165.0
-            }
-            return 0.0
-        }
+//        if indexPath.row == 3 {
+//            if pickerVisible == true {
+//                return 165.0
+//            }
+//            return 0.0
+//        }
         return 44.0
     }
-   
+    
 
+    
+    
+    // MARK: - Table view data source
+//
 //    override func numberOfSections(in tableView: UITableView) -> Int {
 //        // #warning Incomplete implementation, return the number of sections
 //        return 0
