@@ -27,11 +27,17 @@ class DailyLogViewController: UIViewController {
     
     //MARK: - Action
     
+    
+
+    
+    
     @IBAction func showAlert() {
+        
+        
         let alertController = UIAlertController(title: "Select an item to add to your Daily Log", message: nil, preferredStyle: .actionSheet)
     
         
-        let taskAction = UIAlertAction(title: "Task", style: .default, handler: nil)
+        let taskAction = UIAlertAction(title: "Task", style: .default, handler: { action in self.performSegue(withIdentifier: "taskSegue", sender: self)})
         let eventAction = UIAlertAction(title: "Event", style: .default, handler: nil)
         let reflectionAction = UIAlertAction(title: "Reflection", style: .default, handler: nil)
 
@@ -47,7 +53,7 @@ class DailyLogViewController: UIViewController {
     }
     
     
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -55,6 +61,6 @@ class DailyLogViewController: UIViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+ 
 
 }
