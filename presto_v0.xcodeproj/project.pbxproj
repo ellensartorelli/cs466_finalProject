@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0754F22F1EB017D900A291C9 /* DailyTaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0754F22E1EB017D800A291C9 /* DailyTaskTableViewController.swift */; };
+		0754F2311EB0301E00A291C9 /* DailyLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0754F2301EB0301E00A291C9 /* DailyLogViewController.swift */; };
 		07801AEB1EAE7F87007FEB0B /* FutureLogTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07801AEA1EAE7F87007FEB0B /* FutureLogTableViewCell.swift */; };
 		07801AED1EAE8189007FEB0B /* FutureLogEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07801AEC1EAE8189007FEB0B /* FutureLogEvent.swift */; };
 		07801AEF1EAE855D007FEB0B /* FutureLogTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07801AEE1EAE855D007FEB0B /* FutureLogTableViewController.swift */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0754F22E1EB017D800A291C9 /* DailyTaskTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyTaskTableViewController.swift; sourceTree = "<group>"; };
+		0754F2301EB0301E00A291C9 /* DailyLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyLogViewController.swift; sourceTree = "<group>"; };
 		07801AEA1EAE7F87007FEB0B /* FutureLogTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FutureLogTableViewCell.swift; sourceTree = "<group>"; };
 		07801AEC1EAE8189007FEB0B /* FutureLogEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FutureLogEvent.swift; sourceTree = "<group>"; };
 		07801AEE1EAE855D007FEB0B /* FutureLogTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FutureLogTableViewController.swift; sourceTree = "<group>"; };
@@ -65,6 +69,8 @@
 				07A395B61EAE74ED003C6E64 /* AppDelegate.swift */,
 				07A395B81EAE74ED003C6E64 /* FutureLogEventViewController.swift */,
 				07A395BA1EAE74ED003C6E64 /* Main.storyboard */,
+				0754F2301EB0301E00A291C9 /* DailyLogViewController.swift */,
+				0754F22E1EB017D800A291C9 /* DailyTaskTableViewController.swift */,
 				07801AEA1EAE7F87007FEB0B /* FutureLogTableViewCell.swift */,
 				07801AEC1EAE8189007FEB0B /* FutureLogEvent.swift */,
 				07801AEE1EAE855D007FEB0B /* FutureLogTableViewController.swift */,
@@ -151,7 +157,9 @@
 				07801AED1EAE8189007FEB0B /* FutureLogEvent.swift in Sources */,
 				07801AEF1EAE855D007FEB0B /* FutureLogTableViewController.swift in Sources */,
 				07A395B91EAE74ED003C6E64 /* FutureLogEventViewController.swift in Sources */,
+				0754F2311EB0301E00A291C9 /* DailyLogViewController.swift in Sources */,
 				07A395B71EAE74ED003C6E64 /* AppDelegate.swift in Sources */,
+				0754F22F1EB017D900A291C9 /* DailyTaskTableViewController.swift in Sources */,
 				07A395BF1EAE74ED003C6E64 /* presto_v0.xcdatamodeld in Sources */,
 				07801AEB1EAE7F87007FEB0B /* FutureLogTableViewCell.swift in Sources */,
 			);
