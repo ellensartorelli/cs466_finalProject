@@ -11,7 +11,6 @@ import UIKit
 class DailyLogReflectionViewController: UIViewController {
 
     @IBOutlet weak var reflectionText: UITextView!
-    @IBOutlet weak var reflectionTitle: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()

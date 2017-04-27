@@ -10,12 +10,14 @@ import UIKit
 
 class DailyLogTableViewController: UITableViewController {
     
-    
+    var reflections = [DailyLogReflection]()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        loadSampleReflections()
     }
     
     override func didReceiveMemoryWarning() {
@@ -26,9 +28,6 @@ class DailyLogTableViewController: UITableViewController {
     
     
     //MARK: - Action
-    
-    
-    
     
     
     @IBAction func showAlert() {
@@ -53,26 +52,31 @@ class DailyLogTableViewController: UITableViewController {
     }
     
 
+//
+//    override func numberOfSections(in tableView: UITableView) -> Int {
+//        return 1
+//    }
+//
+//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return 1
+//    }
+//
+//
+//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        
+//        let cellIdentifier = "DailyLogReflection"
+//        
+//        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? DailyLogReflectionTableViewCell else {
+//            fatalError("The dequeued cell is not a DailyLogReflectionTVCell")
+//        }
+//        
+//        let reflection = reflections[indexPath.row]
+//        
+//        cell.reflectionText.text = reflection.reflection
+//    
+//        return cell
+//    }
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
-    }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
 
     /*
     // Override to support conditional editing of the table view.
@@ -116,6 +120,18 @@ class DailyLogTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+    }
+    
+    //MARK: Private methods
+    
+    private func loadSampleReflections(){
+
+        guard let ref1 = DailyLogReflection(reflection: "Hello World") else {
+            fatalError("Unable to instantiate reflection")
+        }
+        
+        reflections += [ref1]
+        
     }
 
 
