@@ -19,6 +19,10 @@ class DailyLogViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        viewWillAppear(true)
+        tableView.delegate = self
+        tableView.dataSource = self
+        self.view.addSubview(self.tableView)
         
         // Do any additional setup after loading the view.
         loadSampleReflections()
@@ -33,6 +37,8 @@ class DailyLogViewController: UIViewController, UITableViewDelegate, UITableView
     
     //MARK: - Table View Data Source
     
+
+    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -43,40 +49,40 @@ class DailyLogViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         print("tableview reached")
-        if indexPath.row < tasks.count{
-            let cell:DailyLogTaskTableViewCell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! DailyLogTaskTableViewCell
+        let tCell:DailyLogTaskTableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! DailyLogTaskTableViewCell
+        let eCell:DailyLogEventTableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath) as! DailyLogEventTableViewCell
+        let rCell:DailyLogReflectionTableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "reflectionCell", for: indexPath) as! DailyLogReflectionTableViewCell
+        print("index path row is \(indexPath.row)")
+        print("ask count row is \(tasks.count)")
+
+        if indexPath.row < tasks.count {
             let task = tasks[indexPath.row]
-            cell.taskLabel.text = task.title
+            tCell.taskLabel.text = task.title
             
-            return cell
+            return tCell
             
-        } else if indexPath.row < tasks.count+events.count{
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath) as? DailyLogEventTableViewCell  else {
-                fatalError("The dequeued cell is not an instance of DailyLogTaskTableViewCell.")
-            }
+        }else if indexPath.row < (events.count + tasks.count){
+            
             let event = events[indexPath.row - tasks.count]
-            cell.eventLabel.text = event.title
+            eCell.eventLabel.text = event.title
                 
-            return cell
+            return eCell
             
-        } else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "reflectionCell", for: indexPath) as? DailyLogReflectionTableViewCell  else {
-                fatalError("The dequeued cell is not an instance of DailyLogReflectionTableViewCell.")
-            }
+        }else{
+            
             let reflection = reflections[indexPath.row - tasks.count - events.count]
-            cell.reflectionText.text = reflection.reflection
+            rCell.reflectionText.text = reflection.reflection
             
-            return cell
+            return rCell
         }
     }
-    
-    
+
     //MARK: - Action
     
     
     @IBAction func showAlert() {
         
-        
+
         let alertController = UIAlertController(title: "Select an item to add to your Daily Log", message: nil, preferredStyle: .actionSheet)
         
         
@@ -112,7 +118,7 @@ class DailyLogViewController: UIViewController, UITableViewDelegate, UITableView
     private func loadSampleReflections(){
         print("called Reflections")
         
-        guard let ref1 = DailyLogReflection(reflection: "Hello World") else {
+        guard let ref1 = DailyLogReflection(reflection: "ref") else {
             fatalError("Unable to instantiate reflection")
         }
         
@@ -122,7 +128,7 @@ class DailyLogViewController: UIViewController, UITableViewDelegate, UITableView
     private func loadSampleEvents(){
         print("called Events")
         
-        guard let ev1 = DailyLogEvent(title: "Hello World", time: Date.init()) else {
+        guard let ev1 = DailyLogEvent(title: "ev", time: Date.init()) else {
             fatalError("Unable to instantiate event")
         }
         
@@ -138,8 +144,11 @@ class DailyLogViewController: UIViewController, UITableViewDelegate, UITableView
         guard let task2 = DailyLogTask(title: "task2", alert: false, alertTime: Date.init()) else {
             fatalError("Unable to instantiate task")
         }
+        guard let task3 = DailyLogTask(title: "task3", alert: false, alertTime: Date.init()) else {
+            fatalError("Unable to instantiate task")
+        }
         
-        tasks += [task1, task2]
+        tasks += [task1, task2, task3]
         print(tasks.count)
     }
     
