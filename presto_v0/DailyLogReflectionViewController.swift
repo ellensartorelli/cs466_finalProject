@@ -10,6 +10,7 @@ import UIKit
 
 class DailyLogReflectionViewController: UIViewController {
 
+    var reflection: DailyLogReflection?
     @IBOutlet weak var reflectionText: UITextView!
 
     override func viewDidLoad() {

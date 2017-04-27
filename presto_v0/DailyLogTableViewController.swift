@@ -9,6 +9,30 @@
 import UIKit
 
 class DailyLogTableViewController: UITableViewController {
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // UnUSED
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     //drag in table view
     var reflections = [DailyLogReflection]()
     var events = [DailyLogEvent]()

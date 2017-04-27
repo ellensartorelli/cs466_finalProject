@@ -7,15 +7,18 @@
 //
 
 import UIKit
+import os.log
 
-class DailyLogEventTableViewController: UITableViewController {
+class DailyLogEventTableViewController: UITableViewController, UITextFieldDelegate {
 
 
-    
+    var event: DailyLogEvent?
+    @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var timePicker: UIDatePicker!
     @IBOutlet weak var dateDisplay: UILabel!
 
+    @IBOutlet weak var saveButton: UIBarButtonItem!
     
     var pickerVisible = false
 
@@ -23,7 +26,7 @@ class DailyLogEventTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        titleTextField.delegate = self
         let calendar = Calendar.current
         
         let day = calendar.component(.day, from: Date.init())
@@ -114,6 +117,13 @@ class DailyLogEventTableViewController: UITableViewController {
         return 44.0
     }
     
+    
+    //TextField delegate functions
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 
     
     
@@ -174,14 +184,44 @@ class DailyLogEventTableViewController: UITableViewController {
     }
     */
 
-    /*
+
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        super.prepare(for: segue, sender: sender)
+        
+        guard let button = sender as? UIBarButtonItem, button === saveButton else {
+            os_log("The save button was not pressed, cancelling", log: OSLog.default, type: .debug)
+            return
+        }
+        
+        let title = titleTextField.text
+        event = DailyLogEvent(title:title!, time: timePicker.date)!
+        
     }
-    */
+    //TextField delegate functions
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        saveButton.isEnabled = false
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        updateSaveButtonState()
+        navigationItem.title = textField.text
+    }
+    
+    private func updateSaveButtonState(){
+        let text = titleTextField.text ?? ""
+        saveButton.isEnabled = !text.isEmpty
+    }
+ 
 
 }

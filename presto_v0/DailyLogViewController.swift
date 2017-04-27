@@ -17,6 +17,8 @@ class DailyLogViewController: UIViewController, UITableViewDelegate, UITableView
     var tasks = [DailyLogTask]()
     
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 //        viewWillAppear(true)
@@ -125,6 +127,8 @@ class DailyLogViewController: UIViewController, UITableViewDelegate, UITableView
         reflections += [ref1]
         print(reflections.count)
     }
+    
+    
     private func loadSampleEvents(){
         print("called Events")
         
@@ -135,6 +139,8 @@ class DailyLogViewController: UIViewController, UITableViewDelegate, UITableView
         events += [ev1]
         print(events.count)
     }
+    
+    
     private func loadSampleTasks(){
         print("called Tasks")
         
@@ -152,6 +158,24 @@ class DailyLogViewController: UIViewController, UITableViewDelegate, UITableView
         print(tasks.count)
     }
     
-
+// MARK: Actions
+    @IBAction func unwindToDailyLogEvent(sender: UIStoryboardSegue) {
+        
+        if let sourceViewController = sender.source as?
+            DailyLogEventTableViewController, let event = sourceViewController.event{
+            
+            // Add a new meal.
+            if let selectedIndexPath = tableView.indexPathForSelectedRow{
+                events[selectedIndexPath.row] = event
+                tableView.reloadRows(at: [selectedIndexPath], with: .none)
+            }
+            else{
+                let newIndexPath = IndexPath(row: events.count, section: 0)
+                
+                events.append(event)
+                tableView.insertRows(at: [newIndexPath], with: .automatic)
+            }
+        }
+    }
 
 }
