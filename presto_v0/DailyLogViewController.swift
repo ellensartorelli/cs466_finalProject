@@ -38,51 +38,32 @@ class DailyLogViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return (tasks.count + events.count + reflections.count)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        print(indexPath)
-        print(indexPath.row)
-        if indexPath.row == 0 {
-            let cellIdentifier1 = "taskCell"
-            
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier1, for: indexPath) as? DailyLogTaskTableViewCell  else {
-                fatalError("The dequeued cell is not an instance of DailyLogTaskTableViewCell.")
-            }
-            
-            
+        print("tableview reached")
+        if indexPath.row < tasks.count{
+            let cell:DailyLogTaskTableViewCell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! DailyLogTaskTableViewCell
             let task = tasks[indexPath.row]
             cell.taskLabel.text = task.title
             
             return cell
             
-        }
-        else if indexPath.row == 1 {
-        
-            let cellIdentifier2 = "eventCell"
-            
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier2, for: indexPath) as? DailyLogEventTableViewCell  else {
-                fatalError("The dequeued cell is not an instance of DailyLogEventTableViewCell.")
+        } else if indexPath.row < tasks.count+events.count{
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath) as? DailyLogEventTableViewCell  else {
+                fatalError("The dequeued cell is not an instance of DailyLogTaskTableViewCell.")
             }
-            
-            
-            let event = events[indexPath.row]
+            let event = events[indexPath.row - tasks.count]
             cell.eventLabel.text = event.title
-            
+                
             return cell
-        }
-        else {
-            //set the data here
-            let cellIdentifier3 = "reflectionCell"
             
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier3, for: indexPath) as? DailyLogReflectionTableViewCell  else {
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "reflectionCell", for: indexPath) as? DailyLogReflectionTableViewCell  else {
                 fatalError("The dequeued cell is not an instance of DailyLogReflectionTableViewCell.")
             }
-            
-
-            let reflection = reflections[indexPath.row]
+            let reflection = reflections[indexPath.row - tasks.count - events.count]
             cell.reflectionText.text = reflection.reflection
             
             return cell
@@ -129,7 +110,7 @@ class DailyLogViewController: UIViewController, UITableViewDelegate, UITableView
     //MARK: Private methods
     
     private func loadSampleReflections(){
-        print("called loadSample")
+        print("called Reflections")
         
         guard let ref1 = DailyLogReflection(reflection: "Hello World") else {
             fatalError("Unable to instantiate reflection")
