@@ -39,7 +39,7 @@ class DailyLogViewController: UIViewController {
         
         let taskAction = UIAlertAction(title: "Task", style: .default, handler: { action in self.performSegue(withIdentifier: "taskSegue", sender: self)})
         let eventAction = UIAlertAction(title: "Event", style: .default, handler: { action in self.performSegue(withIdentifier: "eventSegue", sender: self)})
-        let reflectionAction = UIAlertAction(title: "Reflection", style: .default, handler: nil)
+        let reflectionAction = UIAlertAction(title: "Reflection", style: .default, handler:{ action in self.performSegue(withIdentifier: "reflectionSegue", sender: self)})
 
         let defaultAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
         
