@@ -16,20 +16,19 @@ class DailyLogViewController: UIViewController, UITableViewDelegate, UITableView
     var events = [DailyLogEvent]()
     var tasks = [DailyLogTask]()
     
-    
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        viewWillAppear(true)
         tableView.delegate = self
         tableView.dataSource = self
         self.view.addSubview(self.tableView)
         
         // Do any additional setup after loading the view.
-        loadSampleReflections()
+       
         loadSampleTasks()
         loadSampleEvents()
+        loadSampleReflections()
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,43 +38,38 @@ class DailyLogViewController: UIViewController, UITableViewDelegate, UITableView
     
     //MARK: - Table View Data Source
     
-
-    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (tasks.count + events.count + reflections.count)
+        return tasks.count + events.count + reflections.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("tableview reached")
-        let tCell:DailyLogTaskTableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! DailyLogTaskTableViewCell
-        let eCell:DailyLogEventTableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath) as! DailyLogEventTableViewCell
-        let rCell:DailyLogReflectionTableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "reflectionCell", for: indexPath) as! DailyLogReflectionTableViewCell
-        print("index path row is \(indexPath.row)")
-        print("ask count row is \(tasks.count)")
-
+   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row < tasks.count {
+            let cell: DailyLogTaskTableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! DailyLogTaskTableViewCell
+            //set the data here
             let task = tasks[indexPath.row]
-            tCell.taskLabel.text = task.title
+            cell.taskLabel.text = task.title
             
-            return tCell
-            
-        }else if indexPath.row < (events.count + tasks.count){
-            
+            return cell
+        }
+        else if indexPath.row >= tasks.count && indexPath.row < tasks.count + events.count {
+            let cell: DailyLogEventTableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath) as! DailyLogEventTableViewCell
+            //set the data here
             let event = events[indexPath.row - tasks.count]
-            eCell.eventLabel.text = event.title
-                
-            return eCell
+            cell.eventLabel.text = event.title
             
-        }else{
-            
+            return cell
+        }
+        else {
+            let cell: DailyLogReflectionTableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "reflectionCell", for: indexPath) as! DailyLogReflectionTableViewCell
+            //set the data here
             let reflection = reflections[indexPath.row - tasks.count - events.count]
-            rCell.reflectionText.text = reflection.reflection
+            cell.reflectionText.text = reflection.reflection
             
-            return rCell
+            return cell
         }
     }
 
@@ -135,8 +129,11 @@ class DailyLogViewController: UIViewController, UITableViewDelegate, UITableView
         guard let ev1 = DailyLogEvent(title: "ev", time: Date.init()) else {
             fatalError("Unable to instantiate event")
         }
+        guard let ev2 = DailyLogEvent(title: "ev2", time: Date.init()) else {
+            fatalError("Unable to instantiate event")
+        }
         
-        events += [ev1]
+        events += [ev1, ev2]
         print(events.count)
     }
     
